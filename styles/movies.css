@@ -10,21 +10,21 @@
     font-weight: 700;
 }
 
-.movies div {
+.movies > div {
     height: 640px;
     overflow: auto;
     padding-right: 44px;
 }
 
-.movies div::-webkit-scrollbar {
+.movies > div::-webkit-scrollbar {
 width: 0.2rem;
 }
 
-.movies div::-webkit-scrollbar-track {
+.movies > div::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.4);
 }
 
-.movies div::-webkit-scrollbar-thumb {
+.movies > div::-webkit-scrollbar-thumb {
     background: var(--primary);
 }
 
@@ -34,12 +34,12 @@ width: 0.2rem;
     row-gap: 28px;
 }
 
-.movies li {
+.movie {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
-    background:black ;
+    
     position: relative;
     padding-left: 10px;
     padding-bottom: 16px;
@@ -47,18 +47,16 @@ width: 0.2rem;
     width: 265px;
     height: 150px;
     border-radius: 8px;
+    overflow: hidden;
 
-    background-image: linear-gradient(180deg, rgba(14, 23, 47, 0.0001) 11.72%, #0E172F 100%), url('/assets/background.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: linear-gradient(180deg, rgba(14, 23, 47, 0.0001) 11.72%, #0E172F 100%);
 }
 
-.movies li:not(:first-child) {
+.movie:not(:first-child) {
     margin-top: 50px;
 }
 
-.movies li span {
+.movie span {
     font-size: 0.875rem;
     line-height: 1.125rem;
     font-weight: 400;
@@ -66,29 +64,41 @@ width: 0.2rem;
     margin-bottom: 6px;
 }
 
-.movies li strong {
+.movie strong {
    font-size: 1rem;
    line-height: 1.25rem;
    font-weight: 600;
 }
 
-.movies li button {
+.movie button {
     position: relative;
     inset: 0;
 
     margin: auto;
     background: transparent;
 
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
 
     opacity: 0;
-    transform: translate(40px);
+    transform: translateY(40px);
 
     transition: all 0.6s;
 }
 
-.movies li:hover button {
+.movie:hover button {
     opacity: 1;
-    transform: translate(0);
+    transform: translateY(0);
+}
+
+.movie_image {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.movie_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
