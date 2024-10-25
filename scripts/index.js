@@ -4,9 +4,9 @@ const BASE_URL_IMAGE = {
     original: 'https://image.tmdb.org/t/p/original',
     small: 'https://image.tmdb.org/t/p/w500'
 }
-const LIST_MOVIES = ['tt12801262', 'tt4823776' ,'tt2096673', 'tt5109280', 'tt7146812', 'tt2948372', 'tt2953050', 'tt3521164', 'tt2380307', 'tt8097030']
+const LIST_MOVIES = ['tt12801262', 'tt4823776' ,'tt2096673', 'tt5109280', 'tt7146812', 'tt2948372', 'tt2953050', 'tt3521164']
 
-const moviesList = document.getElementById('movies_list')
+const moviesList = document.getElementById('movies')
 
 function getUrlMovie(movieId) {
     return `https://api.themoviedb.org/3/movie/${movieId}?language=${API_LANGUAGE}&api_key=${API_KEY}`
@@ -74,6 +74,14 @@ function createMovie(movieId) {
 function loadListMovies() {
     LIST_MOVIES.map(createMovie)
 
+}
+
+function changeButtonMenu() {
+    const button = document.querySelector('.button-menu')
+    const navigation = document.querySelector('.navigation')
+    
+    button.classList.toggle('active')
+    navigation.classList.toggle('active')
 }
 
 loadListMovies()
