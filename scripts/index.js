@@ -4,12 +4,20 @@ const BASE_URL_IMAGE = {
     original: 'https://image.tmdb.org/t/p/original',
     small: 'https://image.tmdb.org/t/p/w500'
 }
-const LIST_MOVIES = ['tt12801262', 'tt4823776' ,'tt2096673', 'tt5109280', 'tt7146812', 'tt2948372', 'tt2953050', 'tt3521164']
+const movies = []
 
 const moviesList = document.getElementById('movies')
 
 function getUrlMovie(movieId) {
     return `https://api.themoviedb.org/3/movie/${movieId}?language=${API_LANGUAGE}&api_key=${API_KEY}`
+}
+
+function changeButtonMenu() {
+    const button = document.querySelector('.button-menu')
+    const navigation = document.querySelector('.navigation')
+    
+    button.classList.toggle('active')
+    navigation.classList.toggle('active')
 }
 
 function setMainMovie(movieId) {
@@ -30,6 +38,8 @@ function setMainMovie(movieId) {
     
         const image = BASE_URL_IMAGE.original.concat(data.backdrop_path)
         appImage.setAttribute('src', image)
+
+        changeButtonMenu()
     })
 }
 
@@ -73,17 +83,30 @@ function createMovie(movieId) {
 
 function loadListMovies() {
     LIST_MOVIES.map(createMovie)
-
-}
-
-function changeButtonMenu() {
-    const button = document.querySelector('.button-menu')
-    const navigation = document.querySelector('.navigation')
-    
-    button.classList.toggle('active')
-    navigation.classList.toggle('active')
 }
 
 loadListMovies()
 
 setMainMovie(LIST_MOVIES[0])
+
+function loadMovies() {
+    const LIST_MOVIES = ['tt12801262', 'tt4823776' ,'tt2096673', 'tt5109280', 'tt7146812', 'tt2948372', 'tt2953050', 'tt3521164']
+    LIST_MOVIES.map(movie => {
+        fetch(getUrlMovie(movie)).then( response => response.json()).then( data => {
+            
+            const movieData = {
+                title: data.title,
+                overview: data.overview,
+                vote_average: data.vote_average,
+                genre: data.genres[0].name,
+                release: data.release_date.split('-')[0],
+                image: {
+                    original: BASE_URL_IMAGE.original.concat(data.backdrop_path),
+                    small: BASE_URL_IMAGE.small.concat(data.backdrop_path),
+                }
+            }
+
+            movies.push(movieData)
+        })
+    })
+}
