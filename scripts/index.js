@@ -5,7 +5,7 @@ const BASE_URL_IMAGE = {
     small: 'https://image.tmdb.org/t/p/w500'
 }
 const movies = []
-
+let movieActive = 'tt12801262'
 const moviesElement = document.getElementById('movies')
 
 function getUrlMovie(movieId) {
@@ -38,11 +38,23 @@ function setMainMovie(movie) {
 
 }
 
+function changeMovieActiveInList(newMovieActive) {
+    const movieActiveCurrent = document.getElementById(movieActive)
+    movieActiveCurrent.classList.remove('active-movie')
+
+    const movieActiveNew = document.getElementById(newMovieActive)
+    movieActiveNew.classList.add('active-movie')
+
+    movieActive = newMovieActive
+}
+
 function changeMainMovie(movieId){
+    changeMovieActiveInList(movieId)
+
     const movie = movies.find(movie => movie.id == movieId)
 
     setMainMovie(movie)
-    changeButtonMenu()
+    // changeButtonMenu()
 }
 
 function createButtonMovie(movieId) {
@@ -70,6 +82,8 @@ function addMovieInList(movie) {
     const movieElement = document.createElement('li')
     movieElement.classList.add('movie')
 
+    movieElement.setAttribute('id', movie.id)
+
     const genre = `<span>${movie.genres}</span>`
     const title = `<strong>${movie.title}</strong>`
 
@@ -81,7 +95,7 @@ function addMovieInList(movie) {
 }
 
 function loadMovies() {
-    const LIST_MOVIES = ['tt12801262', 'tt4823776', 'tt2096673', 'tt5109280', 'tt7146812', 'tt2948372', 'tt2953050', 'tt3521164']
+    const LIST_MOVIES = ['tt12801262', 'tt4823776']
     LIST_MOVIES.map((movie, index) => {
         fetch(getUrlMovie(movie)).then(response => response.json()).then(data => {
 
@@ -100,11 +114,17 @@ function loadMovies() {
 
             movies.push(movieData)
 
+            addMovieInList(movieData)
+
             if (index == 0) {
                 setMainMovie(movieData)
-            }
+                movieActive = movieData.id
 
-            addMovieInList(movieData)
+                const movieActiveNew = document.getElementById(movieActive)
+                movieActiveNew.classList.add('active-movie')
+            
+                
+            }
 
         })
     })
