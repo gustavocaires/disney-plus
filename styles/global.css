@@ -3,6 +3,7 @@
 @import url('./movie.css');
 @import url('./movies.css');
 @import url('./navigation.css');
+@import url('./form.css');
 
 
 * {
@@ -24,7 +25,7 @@
 
 :root {
   --primary: #fff;
-  --linear: linear-gradient(154.23deg, #0F3A7B -58.45%, #0CFFFF)
+  --linear: linear-gradient(154.23deg, #0F3A7B -58.45%, #0CFFFF 374.49%)
 }
 
 body {
