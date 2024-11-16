@@ -1,21 +1,3 @@
-/* .movies > div {
-    height: 640px;
-    overflow: auto;
-    padding-right: 44px;
-} */
-/* 
-.movies > div::-webkit-scrollbar {
-width: 0.2rem;
-}
-
-.movies > div::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-.movies > div::-webkit-scrollbar-thumb {
-    background: var(--primary);
-} */
-
 #movies {
     display: grid;
     grid-template-columns: 1fr 1fr;
