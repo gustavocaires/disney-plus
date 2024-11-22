@@ -5,13 +5,11 @@
 
     width: 660px;
     height: 100%;
-    padding-top: 66px;
-    padding-left: 54px;
-    padding-right: 80px;
+    padding: 66px 80px 32px 54px;
     
-
     background: #0b2e5b;
     transition: all 0.6s;
+    overflow: auto;
 
 }
 
@@ -25,3 +23,24 @@
     font-weight: 700;
 }
 
+@media(max-height: 750px) {
+    .navigation {
+        padding: 70px 40px 40px;
+    }
+}
+
+@media(max-width: 768px) {
+    .navigation {
+        width: 100vw;
+        right: -100vw;
+    }
+    .navigation {
+        transform: translateX(--100vw);
+    }
+}
+
+@media(max-width: 650px) {
+    .navigation {
+        padding: 44px 24px 24px;
+    }
+}
